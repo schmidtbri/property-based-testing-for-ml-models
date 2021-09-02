@@ -1,0 +1,311 @@
+components:
+  schemas:
+    Error:
+      description: Error.
+      properties:
+        message:
+          description: The error message.
+          title: Message
+          type: string
+        type:
+          description: The type of error.
+          title: Type
+          type: string
+      required:
+      - type
+      - message
+      title: Error
+      type: object
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          title: Detail
+          type: array
+      title: HTTPValidationError
+      type: object
+    MobileHandsetPriceModelInput:
+      description: Schema for input of the model's predict method.
+      properties:
+        battery_power:
+          description: Total energy a battery can store in one time measured in mAh.
+          maximum: 2000.0
+          minimum: 500.0
+          title: battery_power
+          type: integer
+        clock_speed:
+          description: Speed of microprocessor in gHz.
+          maximum: 3.0
+          minimum: 0.5
+          title: clock_speed
+          type: number
+        depth:
+          description: Depth of mobile phone in cm.
+          maximum: 1.0
+          minimum: 0.1
+          title: depth
+          type: number
+        front_camera_megapixels:
+          description: Front camera mega pixels.
+          maximum: 20.0
+          minimum: 0.0
+          title: front_camera_megapixels
+          type: integer
+        has_bluetooth:
+          description: Whether the phone has bluetooth.
+          title: has_bluetooth
+          type: boolean
+        has_dual_sim:
+          description: Whether the phone has dual SIM slots.
+          title: has_dual_sim
+          type: boolean
+        has_four_g:
+          description: Whether the phone has 4G.
+          title: has_four_g
+          type: boolean
+        has_three_g:
+          description: Whether the phone has 3G touchscreen or not.
+          title: has_three_g
+          type: boolean
+        has_touch_screen:
+          description: Whether the phone has a touchscreen or not.
+          title: has_touch_screen
+          type: boolean
+        has_wifi:
+          description: Whether the phone has wifi or not.
+          title: has_wifi
+          type: boolean
+        internal_memory:
+          description: Internal memory in gigabytes.
+          maximum: 664.0
+          minimum: 2.0
+          title: internal_memory
+          type: integer
+        number_of_cores:
+          description: Number of cores of processor.
+          maximum: 8.0
+          minimum: 1.0
+          title: number_of_cores
+          type: integer
+        pixel_resolution_height:
+          description: Pixel resolution height.
+          maximum: 1960.0
+          minimum: 0.0
+          title: pixel_resolution_height
+          type: integer
+        pixel_resolution_width:
+          description: Pixel resolution width.
+          maximum: 1998.0
+          minimum: 500.0
+          title: pixel_resolution_width
+          type: integer
+        primary_camera_megapixels:
+          description: Primary camera mega pixels.
+          maximum: 20.0
+          minimum: 0.0
+          title: primary_camera_megapixels
+          type: integer
+        ram:
+          description: Random access memory in megabytes.
+          maximum: 3998.0
+          minimum: 256.0
+          title: ram
+          type: integer
+        screen_height:
+          description: Screen height of mobile in cm.
+          maximum: 19.0
+          minimum: 5.0
+          title: screen_height
+          type: integer
+        screen_width:
+          description: Screen width of mobile in cm.
+          maximum: 18.0
+          minimum: 0.0
+          title: screen_width
+          type: integer
+        talk_time:
+          description: Longest time that a single battery charge will last when on
+            phone call.
+          maximum: 20.0
+          minimum: 2.0
+          title: talk_time
+          type: integer
+        weight:
+          description: Weight of mobile phone.
+          maximum: 200.0
+          minimum: 80.0
+          title: weight
+          type: integer
+      required:
+      - battery_power
+      - has_bluetooth
+      - clock_speed
+      - has_dual_sim
+      - front_camera_megapixels
+      - has_four_g
+      - internal_memory
+      - depth
+      - weight
+      - number_of_cores
+      - primary_camera_megapixels
+      - pixel_resolution_height
+      - pixel_resolution_width
+      - ram
+      - screen_height
+      - screen_width
+      - talk_time
+      - has_three_g
+      - has_touch_screen
+      - has_wifi
+      title: MobileHandsetPriceModelInput
+      type: object
+    MobileHandsetPriceModelOutput:
+      description: Schema for output of the model's predict method.
+      properties:
+        price_range:
+          allOf:
+          - $ref: '#/components/schemas/PriceEnum'
+          description: Price range class.
+          title: Price Range
+      required:
+      - price_range
+      title: MobileHandsetPriceModelOutput
+      type: object
+    ModelMetadata:
+      description: Metadata of a model.
+      properties:
+        description:
+          description: The description of the model.
+          title: Description
+          type: string
+        display_name:
+          description: The display name of the model.
+          title: Display Name
+          type: string
+        qualified_name:
+          description: The qualified name of the model.
+          title: Qualified Name
+          type: string
+        version:
+          description: The version of the model.
+          title: Version
+          type: string
+      required:
+      - display_name
+      - qualified_name
+      - description
+      - version
+      title: ModelMetadata
+      type: object
+    ModelMetadataCollection:
+      description: Collection of model metadata.
+      properties:
+        models:
+          description: A collection of model description.
+          items:
+            $ref: '#/components/schemas/ModelMetadata'
+          title: Models
+          type: array
+      required:
+      - models
+      title: ModelMetadataCollection
+      type: object
+    PriceEnum:
+      description: An enumeration.
+      enum:
+      - zero
+      - one
+      - two
+      - three
+      title: PriceEnum
+      type: string
+    ValidationError:
+      properties:
+        loc:
+          items:
+            type: string
+          title: Location
+          type: array
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+      type: object
+info:
+  title: Mobile Handset Price Model Service
+  version: 0.1.0
+openapi: 3.0.2
+paths:
+  /:
+    get:
+      description: Root of API.
+      operationId: get_root__get
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+      summary: Get Root
+  /api/models:
+    get:
+      description: List of models available.
+      operationId: get_models_api_models_get
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelMetadataCollection'
+          description: Successful Response
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      summary: Get Models
+  /api/models/mobile_handset_price_model/prediction:
+    post:
+      description: Model to predict the price of a mobile phone.
+      operationId: PredictionController_api_models_mobile_handset_price_model_prediction_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MobileHandsetPriceModelInput'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MobileHandsetPriceModelOutput'
+          description: Successful Response
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      summary: Predictioncontroller

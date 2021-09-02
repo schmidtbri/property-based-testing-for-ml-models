@@ -1,0 +1,5 @@
+service_title: Mobile Handset Price Model Service
+models:
+  - qualified_name: mobile_handset_price_model
+    class_path: mobile_handset_price_model.prediction.model.MobileHandsetPriceModel
+    create_endpoint: true

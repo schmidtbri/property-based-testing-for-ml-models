@@ -1,0 +1,5 @@
+# requirements for model service only
+ml_base
+pandas
+rest_model_service
+xgboost
