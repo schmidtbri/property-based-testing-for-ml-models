@@ -2,7 +2,7 @@
 
 Building and deploying a regression ML model.
 
-This code is used in this [blog post]().
+This code is used in this [blog post](https://brianschmidt-78145.medium.com/property-based-testing-for-ml-models-83847d6a781a).
 
 ## Requirements
 

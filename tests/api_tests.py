@@ -21,13 +21,14 @@ class APITests(TestCase):
         print("Generated and tested {} examples.".format(self.counter))
 
     @given(case=model_metadata_strategy)
+    @settings(deadline=None)
     def test_model_metadata_endpoint(self, case):
         response = case.call_asgi()
         case.validate_response(response)
         self.counter += 1
 
     @given(case=model_prediction_strategy)
-    @settings(max_examples=1000)
+    @settings(deadline=None, max_examples=1000)
     def test_model_prediction_endpoint(self, case):
         response = case.call_asgi()
         case.validate_response(response)
